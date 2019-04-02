@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <div>
+      <div class="box"></div>
       <logo />
       <h1 class="title">
         nuxt-project
@@ -25,14 +26,21 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import axios from 'axios'
 export default {
   components: {
     Logo
+  },
+  created(){
+    axios.get('api/dict/trainline').then((res)=>{
+      console.log(res)
+    })
   }
 }
 </script>
 
-<style>
+<style lang="less">
+@hei: 20px;
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -40,6 +48,11 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.box {
+  height: @hei;
+  width: @hei;
+  background: @defaultcolor;
 }
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
@@ -60,4 +73,5 @@ export default {
 .links {
   padding-top: 15px;
 }
+
 </style>
